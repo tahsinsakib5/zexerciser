@@ -14,9 +14,14 @@ class MenuSelectionActivity extends StatefulWidget {
 class _MenuSelectionActivityState extends State<MenuSelectionActivity> {
   String _selectedMenu = 'Select a Menu';
 
-  ExerciseConfig  _config  = ExerciseConfig(counts: 
-    ExerciseCounts(button: 0, pencil: 0, pincher: 0, scissor: 0)
-  );
+  ExerciseConfig _config = ExerciseConfig(
+  counts: ExerciseCounts(
+    scissor: 0,
+    pencil: 0, 
+    pincher: 0,
+    button: 0,
+  )
+);
 
   @override
   Widget build(BuildContext context) {
@@ -101,38 +106,38 @@ class _MenuSelectionActivityState extends State<MenuSelectionActivity> {
   // Add similar methods for menu2-menu7...
 
   void _goToExercise() {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => MainActivity(
-    //       device: widget.device,
-    //       config: _config,
-    //     ),
-    //   ),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MainActivity(
+          device: widget.device, config: _config,
+          
+        ),
+      ),
+    );
   }
 }
 
-class ExerciseConfig {
-  final bool chkScissor, chkPencil, chkPincher, chkButton;
-  final bool musicScissor, musicPencil, musicPincher, musicButton;
-  final bool noLed, repeatMode;
-  final int mode;
-  final String modeName;
-  final ExerciseCounts counts;
+// class ExerciseConfig {
+//   final bool chkScissor, chkPencil, chkPincher, chkButton;
+//   final bool musicScissor, musicPencil, musicPincher, musicButton;
+//   final bool noLed, repeatMode;
+//   final int mode;
+//   final String modeName;
+//   final ExerciseCounts counts;
 
-  ExerciseConfig({
-    this.chkScissor = false, this.chkPencil = false, this.chkPincher = false, this.chkButton = false,
-    this.musicScissor = true, this.musicPencil = true, this.musicPincher = true, this.musicButton = true,
-    this.noLed = false, this.repeatMode = false, this.mode = 0, this.modeName = '',
-    required this.counts,
-  });
-}
+//   ExerciseConfig({
+//     this.chkScissor = false, this.chkPencil = false, this.chkPincher = false, this.chkButton = false,
+//     this.musicScissor = true, this.musicPencil = true, this.musicPincher = true, this.musicButton = true,
+//     this.noLed = false, this.repeatMode = false, this.mode = 0, this.modeName = '',
+//     required this.counts,
+//   });
+// }
 
-class ExerciseCounts {
-  final int scissor, pencil, pincher, button;
+// class ExerciseCounts {
+//   final int scissor, pencil, pincher, button;
 
-  ExerciseCounts({
-    this.scissor = 0, this.pencil = 0, this.pincher = 0, this.button = 0,
-  });
-}
+//   ExerciseCounts({
+//     this.scissor = 0, this.pencil = 0, this.pincher = 0, this.button = 0,
+//   });
+// }
