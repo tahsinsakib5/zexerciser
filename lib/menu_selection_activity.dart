@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:zexerciser/exercise_config.dart';
 import 'main_activity.dart';
 
 class MenuSelectionActivity extends StatefulWidget {

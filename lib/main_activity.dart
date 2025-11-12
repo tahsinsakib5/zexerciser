@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:zexerciser/menu_selection_activity.dart';
+import 'package:zexerciser/sample_gatt_attributes.dart';
+import 'menu_selection_activity.dart';
 
 class MainActivity extends StatefulWidget {
   final BluetoothDevice device;
@@ -82,8 +83,7 @@ class _MainActivityState extends State<MainActivity> {
 
   Future<void> _connectToDevice() async {
     try {
-      // CORRECTED: Use the proper connection method
-      await widget.device.connect(autoConnect: false , timeout: Duration(seconds: 15));
+      await widget.device.connect(autoConnect: false);
       
       setState(() {
         _connected = true;
@@ -95,12 +95,12 @@ class _MainActivityState extends State<MainActivity> {
         String serviceUuid = service.uuid.toString();
         print('Found service: $serviceUuid');
         
-        if (serviceUuid.toLowerCase().contains('ffe0')) {
+        if (SampleGattAttributes.isHM10Service(serviceUuid)) {
           for (BluetoothCharacteristic characteristic in service.characteristics) {
             String charUuid = characteristic.uuid.toString();
             print('Found characteristic: $charUuid');
             
-            if (charUuid.toLowerCase().contains('ffe1')) {
+            if (SampleGattAttributes.isHM10Characteristic(charUuid)) {
               _txCharacteristic = characteristic;
               _rxCharacteristic = characteristic;
               
@@ -497,12 +497,18 @@ class ExerciseConfig {
   final ExerciseCounts counts;
 
   ExerciseConfig({
-    this.chkScissor = false, this.chkPencil = false, 
-    this.chkPincher = false, this.chkButton = false,
-    this.musicScissor = true, this.musicPencil = true, 
-    this.musicPincher = true, this.musicButton = true,
-    this.noLed = false, this.repeatMode = false, 
-    this.mode = 0, this.modeName = '',
+    this.chkScissor = false, 
+    this.chkPencil = false, 
+    this.chkPincher = false, 
+    this.chkButton = false,
+    this.musicScissor = true, 
+    this.musicPencil = true, 
+    this.musicPincher = true, 
+    this.musicButton = true,
+    this.noLed = false, 
+    this.repeatMode = false, 
+    this.mode = 0, 
+    this.modeName = '',
     required this.counts,
   });
 }
@@ -511,6 +517,9 @@ class ExerciseCounts {
   final int scissor, pencil, pincher, button;
 
   ExerciseCounts({
-    this.scissor = 0, this.pencil = 0, this.pincher = 0, this.button = 0,
+    this.scissor = 0, 
+    this.pencil = 0, 
+    this.pincher = 0, 
+    this.button = 0,
   });
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:zexerciser/device_scan_activity.dart';
-// import 'device_scan_activity.dart';
+import 'device_scan_activity.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -29,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (context) => DeviceScanActivity()),
       );
     });
-  } 
+  }
 
   @override
   void dispose() {
